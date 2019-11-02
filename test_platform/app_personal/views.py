@@ -24,12 +24,7 @@ def login(request):
             return HttpResponseRedirect('/manage/')
 
 
-# 装饰需要用户登陆状态的视图
 @login_required
-def manage(request):
-    return render(request, 'manage.html')
-
-
 def logout(request):
     # 退出
     auth.logout(request)

@@ -15,11 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app_personal import views
+from app_personal import views as personal_views
+from app_manage import views as manage_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', views.login),
-    path('manage/', views.manage),
-    path('logout/', views.logout),
+
+    # 个人中心
+    path('', personal_views.login),
+    path('login/', personal_views.login),
+    path('logout/', personal_views.logout),
+
+    # 项目管理
+    path('manage/', manage_views.manage),
+
 ]

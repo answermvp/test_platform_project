@@ -16,12 +16,14 @@ def login(request):
             return render(request, 'login.html', {'error': '用户名或密码为空'})
         # 判断用户是否存在
         user = auth.authenticate(username=username, password=password)
-        if user is None:
-            return render(request, 'login.html', {'error': '用户名或密码错误'})
-        else:
+        if user is not None:
             # 记录用户登陆状态
             auth.login(request, user)
-            return HttpResponseRedirect('/manage/')
+            response = HttpResponseRedirect('/manage/')
+            response.set_cookie("user", username, 3600)
+            return response
+        else:
+            return render(request, 'login.html', {'error': '用户名或密码错误'})
 
 
 @login_required

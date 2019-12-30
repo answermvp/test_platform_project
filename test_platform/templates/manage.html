@@ -1,12 +1,5 @@
-<html>
-<head>
-    {% load static %}
-    <link href='{% static "css/classic.css" %}' rel='stylesheet' type='text/css'/>
-    <link rel="shortcut icon" href='{% static "icon/haveaniceday.ico" %}'/>
-    <!--<link href='https://htmlstream.com/preview/space-v1.5.0/assets/css/theme.css' rel='stylesheet'  type='text/css' />-->
-</head>
-<body>
-
+{% extends "base.html" %}
+{% block base %}
 <div class="wrapper">
     <nav id="sidebar" class="sidebar">
 
@@ -29,8 +22,8 @@
                 </li>
 
                 <!--项目管理-->
-                <li class="sidebar-item active">
-                    <a href="/manage/project" class="sidebar-link" aria-expanded="true">
+                <li class="sidebar-item">
+                    <a href="/manage/project_list/" class="sidebar-link" aria-expanded="true">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                              class="feather feather-sliders align-middle">
@@ -51,7 +44,7 @@
 
                 <!--模块管理-->
                 <li class="sidebar-item">
-                    <a href="/manage/module" data-toggle="collapse" class="sidebar-link collapsed">
+                    <a href="/manage/module_list/" class="sidebar-link collapsed">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                              class="feather feather-layout align-middle">
@@ -65,7 +58,7 @@
 
                 <!--用例管理-->
                 <li class="sidebar-item">
-                    <a href="#auth" data-toggle="collapse" class="sidebar-link collapsed">
+                    <a href="#auth" class="sidebar-link collapsed">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                              class="feather feather-users align-middle">
@@ -81,7 +74,7 @@
 
 
                 <li class="sidebar-item">
-                    <a href="#layouts" data-toggle="collapse" class="sidebar-link collapsed">
+                    <a href="#layouts" class="sidebar-link collapsed">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                              class="feather feather-monitor align-middle">
@@ -94,7 +87,7 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a href="#documentation" data-toggle="collapse" class="sidebar-link collapsed">
+                    <a href="#documentation" class="sidebar-link collapsed">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                              class="feather feather-book-open align-middle">
@@ -106,7 +99,7 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a href="#ui" data-toggle="collapse" class="sidebar-link collapsed">
+                    <a href="#ui" class="sidebar-link collapsed">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                              class="feather feather-grid align-middle">
@@ -147,35 +140,14 @@
                             </svg>
                         </a>
 
-                        <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-toggle="dropdown">
-                            <img src="/static/img/touxiang.jpg" class="avatar img-fluid rounded-circle mr-1"
+                        <a class="nav-link d-none d-sm-inline-block" href="#" data-toggle="dropdown">
+                            <img src="/static/img/user.svg" class="avatar img-fluid rounded-circle mr-1"
                                  alt="Chris Wood">
 
-                            <span class="text-dark">Chris Wood</span>
+                            <span class="text-dark">{{ user }}</span>
                             <a href="/logout/">退出</a>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="pages-profile.html">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                     stroke-linejoin="round" class="feather feather-user align-middle mr-1">
-                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                    <circle cx="12" cy="7" r="4"></circle>
-                                </svg>
-                                Profile</a>
-                            <a class="dropdown-item" href="#">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                     stroke-linejoin="round" class="feather feather-pie-chart align-middle mr-1">
-                                    <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
-                                    <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
-                                </svg>
-                                Analytics</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="pages-settings.html">Settings &amp; Privacy</a>
-                            <a class="dropdown-item" href="#">Help</a>
-                            <a class="dropdown-item" href="#">Sign out</a>
-                        </div>
+
                     </li>
                 </ul>
             </div>
@@ -183,123 +155,12 @@
 
         <main class="content">
             <div class="container-fluid p-0">
-
-                <div class="card flex-fill">
-                    <div class="card-header">
-                        <div class="card-actions float-right">
-                            <div class="dropdown show">
-                                <a href="#" data-toggle="dropdown" data-display="static">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                         stroke-linecap="round" stroke-linejoin="round"
-                                         class="feather feather-more-horizontal align-middle">
-                                        <circle cx="12" cy="12" r="1"></circle>
-                                        <circle cx="19" cy="12" r="1"></circle>
-                                        <circle cx="5" cy="12" r="1"></circle>
-                                    </svg>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                            </div>
-                        </div>
-                        <h5 class="card-title mb-0">项目管理</h5>
-                    </div>
-                    <div id="datatables-dashboard-traffic_wrapper"
-                         class="dataTables_wrapper dt-bootstrap4 no-footer">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-6"></div>
-                            <div class="col-sm-12 col-md-6"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <table id="datatables-dashboard-traffic"
-                                       class="table table-striped my-0 dataTable no-footer" role="grid"
-                                       aria-describedby="datatables-dashboard-traffic_info">
-                                    <thead>
-                                    <tr role="row">
-                                        <th>id</th>
-                                        <th>名称</th>
-                                        <th>描述</th>
-                                        <th>状态</th>
-                                        <th>创建时间</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-
-                                    {% for p in projects %}
-                                        <tr role="row" class="odd">
-                                            <td>{{ p.id }}</td>
-                                            <td>{{ p.name }}</td>
-                                            <td>{{ p.status }}</td>
-                                            <td>{{ p.describe }}</td>
-                                            <td>{{ p.create_time }}</td>
-                                        </tr>
-                                    {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <!-- 翻页 -->
-                        <div class="row">
-                            <div class="col-sm-12 col-md-5">
-                                <div class="dataTables_info" id="datatables-dashboard-traffic_info"
-                                     role="status" aria-live="polite">Showing 1 to 8 of 8 entries
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-7">
-                                <div class="dataTables_paginate paging_simple_numbers"
-                                     id="datatables-dashboard-traffic_paginate">
-                                    <ul class="pagination">
-                                        <li class="paginate_button page-item previous disabled"
-                                            id="datatables-dashboard-traffic_previous">
-                                            <a href="#"
-                                               aria-controls="datatables-dashboard-traffic"
-                                               data-dt-idx="0"
-                                               tabindex="0"
-                                               class="page-link">Previous</a>
-                                        </li>
-                                        <li class="paginate_button page-item active">
-                                            <a href="#"
-                                               aria-controls="datatables-dashboard-traffic"
-                                               data-dt-idx="1"
-                                               tabindex="0"
-                                               class="page-link">1</a>
-                                        </li>
-                                        <li class="paginate_button page-item next disabled"
-                                            id="datatables-dashboard-traffic_next">
-                                            <a href="#"
-                                               aria-controls="datatables-dashboard-traffic"
-                                               data-dt-idx="2"
-                                               tabindex="0"
-                                               class="page-link">Next</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                {% block manage %}
+                
+                {% endblock %}
             </div>
         </main>
 
     </div>
 </div>
-
-<!--<h1>登录成功页！</h1>-->
-<!--<a href="/logout/">退出</a>-->
-
-<!--{% for p in projects %}-->
-    <!--<ul>-->
-    <!--<li>{{ p.name }}</li>-->
-    <!--<li>{{ p.name }}</li>-->
-    <!--</ul>-->
-    <!--{% endfor %}-->
-
-</body>
-</html>
+{% endblock %}

@@ -1,5 +1,6 @@
 from django.contrib import admin
 from app_manage.models import Project
+from app_manage.models import Module
 # Register your models here.
 
 
@@ -11,5 +12,9 @@ class ProjectAdmin(admin.ModelAdmin):
     # 筛选器
     list_filter = ['status']
 
-
+class ModuleAdmin(admin.ModelAdmin):
+    # 显示字段
+    list_display = ['name','describe', "create_time", "project"]
+    
 admin.site.register(Project, ProjectAdmin)
+admin.site.register(Module, ModuleAdmin)

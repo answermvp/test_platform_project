@@ -25,7 +25,7 @@ def add_project(request):
         return HttpResponseRedirect('/manage/')
     else:
         form = ProjectForm()
-        return render(requests, 'project/add.html', {'form':form, 'id':pid})
+        return render(request, 'project/add.html', {'form':form})
 
 def edit_project(request, pid):
     if request.method == 'POST':
